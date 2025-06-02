@@ -1,4 +1,5 @@
 "use client"
+export const dynamic = "force-dynamic" // ⬅️ أضف هذا السطر
 
 import { DialogFooter } from "@/components/ui/dialog"
 
