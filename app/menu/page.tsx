@@ -26,7 +26,7 @@ interface CartItem extends Product {
 export default function MenuPage() {
   const { toast } = useToast()
   const router = useRouter()
-  const searchParams = useSearchParams()
+  // const searchParams = useSearchParams()
   const { isLoading, error, executeApiCall, api } = useApi()
 
   const [products, setProducts] = useState<Product[]>([])
@@ -40,12 +40,14 @@ export default function MenuPage() {
 
   // Get table and customer from URL parameters
   useEffect(() => {
-    const tableParam = searchParams.get("table")
-
+  if (typeof window !== "undefined") {
+    const params = new URLSearchParams(window.location.search)
+    const tableParam = params.get("table")
     if (tableParam) {
       setSelectedTable(tableParam)
     }
-  }, [searchParams])
+  }
+}, [])
 
   // Load products on component mount
   useEffect(() => {
